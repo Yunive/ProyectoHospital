@@ -16,7 +16,7 @@
     <div class="panel-heading"> Lista de Citas</div>
 
     <div class="panel-body ">
-        @Html.ActionLink("Add", "Create", "Citas", null, new { data_modal = "", id = "btnCreate", @class = "btn btn-small btn-primary pull-right" })
+        @Html.ActionLink("Add", "Create", "Cita", null, new { data_modal = "", id = "btnCreate", @class = "btn btn-small btn-primary pull-right" })
     </div>
     @*<h2>Citas</h2>*@
 
@@ -26,13 +26,16 @@
     <table class="table table-bordered table-hover">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.medico.especialidad)
+                @Html.DisplayNameFor(model => model.medico.nombre)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.paciente.nombre)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha)
             </th>
             <th></th>
         </tr>
@@ -41,13 +44,16 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.medico.especialidad)
+                    @Html.DisplayFor(modelItem => item.medico.nombre)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.paciente.nombre)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fecha)
                 </td>
                 <td style="width:20px">
                     <div class="btn-group">

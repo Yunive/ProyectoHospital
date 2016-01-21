@@ -19,6 +19,7 @@ namespace HospitalProyecto.Controllers
         public ActionResult Index()
         {
             var citas = db.citas.Include(c => c.medico).Include(c => c.paciente);
+
             return View(citas.ToList());
         }
 
@@ -40,7 +41,7 @@ namespace HospitalProyecto.Controllers
         // GET: /Cita/Create
         public ActionResult Create()
         {
-            ViewBag.medicoID = new SelectList(db.medicos, "medicoID", "especialidad");
+            ViewBag.medicoID = new SelectList(db.medicos, "medicoID", "nombre");
             ViewBag.pacienteID = new SelectList(db.pacientes, "pacienteID", "nombre");
             return View();
         }
@@ -50,7 +51,7 @@ namespace HospitalProyecto.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="citaID,descripcion,pacienteID,medicoID")] Cita cita)
+        public ActionResult Create([Bind(Include="citaID,descripcion,fecha,pacienteID,medicoID")] Cita cita)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +60,7 @@ namespace HospitalProyecto.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.medicoID = new SelectList(db.medicos, "medicoID", "especialidad", cita.medicoID);
+            ViewBag.medicoID = new SelectList(db.medicos, "medicoID", "nombre", cita.medicoID);
             ViewBag.pacienteID = new SelectList(db.pacientes, "pacienteID", "nombre", cita.pacienteID);
             return View(cita);
         }
@@ -76,7 +77,7 @@ namespace HospitalProyecto.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.medicoID = new SelectList(db.medicos, "medicoID", "especialidad", cita.medicoID);
+            ViewBag.medicoID = new SelectList(db.medicos, "medicoID", "nombre", cita.medicoID);
             ViewBag.pacienteID = new SelectList(db.pacientes, "pacienteID", "nombre", cita.pacienteID);
             return View(cita);
         }
@@ -86,7 +87,7 @@ namespace HospitalProyecto.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="citaID,descripcion,pacienteID,medicoID")] Cita cita)
+        public ActionResult Edit([Bind(Include="citaID,descripcion,fecha,pacienteID,medicoID")] Cita cita)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +95,7 @@ namespace HospitalProyecto.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.medicoID = new SelectList(db.medicos, "medicoID", "especialidad", cita.medicoID);
+            ViewBag.medicoID = new SelectList(db.medicos, "medicoID", "nombre", cita.medicoID);
             ViewBag.pacienteID = new SelectList(db.pacientes, "pacienteID", "nombre", cita.pacienteID);
             return View(cita);
         }
