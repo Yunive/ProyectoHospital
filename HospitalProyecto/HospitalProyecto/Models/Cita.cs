@@ -11,6 +11,7 @@ namespace HospitalProyecto.Models
 
         public String descripcion { get; set; }
 
+        public DateTime fecha { get; set; }
         //llave foranea de  cliente
         public int pacienteID { get; set; }
         public virtual Paciente paciente { get; set; }
