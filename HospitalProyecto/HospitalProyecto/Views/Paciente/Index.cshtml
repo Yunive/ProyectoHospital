@@ -1,58 +1,85 @@
 ﻿@model IEnumerable<HospitalProyecto.Models.Paciente>
 
-@{
+@*@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
+}*@
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
 
-<h2>Index</h2>
+<div class="panel panel-primary">
+    <div class="panel-heading"> Lista de pacientes</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.apellidoP)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.apellidoM)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.telefono)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.direccion)
-        </th>
-        <th></th>
-    </tr>
+    <div class="panel-body ">
+        @Html.ActionLink("Add", "Create", "Pacientes", null, new { data_modal = "", id = "btnCreate", @class = "btn btn-small btn-primary pull-right" })
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.apellidoP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.apellidoM)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.direccion)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.pacienteID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.pacienteID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.pacienteID })
-        </td>
-    </tr>
-}
+    @*<h2>Pacientes</h2>*@
 
-</table>
+    @*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.apellidoP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.apellidoM)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.direccion)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.apellidoP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.apellidoM)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.telefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.direccion)
+                </td>
+                <td style="width:20px">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Details", "Details", new { id = item.pacienteID }, new { data_modal = "" })</li>
+                            <li>@Html.ActionLink("Edit", "Edit", new { id = item.pacienteID }, new { data_modal = "" })</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Delete", "Delete", new { id = item.pacienteID }, new { data_modal = "" })</li>
+
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<script src="~/Scripts/modalform.js"></script>
