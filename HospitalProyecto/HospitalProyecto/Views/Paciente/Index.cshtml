@@ -1,92 +1,91 @@
 ﻿@model IEnumerable<HospitalProyecto.Models.Paciente>
 
-@*@{
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}*@
-<!-- modal placeholder-->
+    HospitalProyecto.Models.Paciente nuevoPaciente = new HospitalProyecto.Models.Paciente();
+    HospitalProyecto.Models.VMPaciente vmAlumno = new HospitalProyecto.Models.VMPaciente(nuevoPaciente);
+
+}
+                      <h2>Index</h2>
+
+                      <!-- Trigger the modal with a button -->
+                      <a data-toggle="modal" data-target="#modalAlta">Nuevo Alumno</a>
+
+                      @using (Html.BeginForm(null, null, FormMethod.Get))
+                      {
+                          <input type="text" name="strBuscado" value="" placeholder="Buscar Alumno" />
+                          <button>Buscar</button>
+                      }
+ @*modal placeholder
 <div id='myModal' class='modal fade in'>
     <div class="modal-dialog">
         <div class="modal-content">
             <div id='myModalContent'></div>
         </div>
     </div>
-</div>
+</div>*@
 
 <div class="panel panel-primary">
     <div class="panel-heading"> Lista de pacientes</div>
 
-    <div class="panel-body ">
-        @Html.ActionLink("Add", "Create", "Pacientes", null, new { data_modal = "", id = "btnCreate", @class = "btn btn-small btn-primary pull-right" })
-    </div>
+    
 
     @*<h2>Pacientes</h2>*@
-
+    <button id="botonPrueba">Boton Nuevo</button>
     @*<p>
     @Html.ActionLink("Create New", "Create")
     </p>*@
-    <table class="table table-bordered table-hover">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.apellidoP)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.apellidoM)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.telefono)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.direccion)
-        </th>
-        <th></th>
-    </tr>
+    <table id="tablaAlumnos" class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.apellidoP)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.apellidoM)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.telefono)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.direccion)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @*@Html.RadioButton("seleccion", item.pacienteID)*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.apellidoP)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.apellidoM)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.telefono)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.direccion)
+                    </td>
+                    <td>
+                        <a id="enlaceDetalles" data-toggle="modal" data-target="#modalDetalles" pacienteID="@item.pacienteID">Detalles</a> |
+                        <a id="enlaceBorrar" data-toggle="modal" data-target="#modalBorrar" pacienteID="@item.pacienteID">Borrar</a> |
+                        <a id="enlaceEditar" data-toggle="modal" data-target="#modalEditar" pacienteID="@item.pacienteID">Editar</a>
+                    </td>
 
-        @foreach (var item in Model)
-        {
-    <tr>
-        @*@Html.RadioButton("seleccion", item.pacienteID)*@
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.apellidoP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.apellidoM)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.direccion)
-        </td>
-        <td>
-            <a id="enlaceDetalles" data-toggle="modal" data-target="#modalDetalles" nomatricula="@item.pacienteID">Detalles</a> |
-            <a id="enlaceBorrar" data-toggle="modal" data-target="#modalBorrar" nomatricula="@item.pacienteID">Borrar</a> |
-            <a id="enlaceEditar" data-toggle="modal" data-target="#modalEditar" nomatricula="@item.pacienteID">Editar</a>
-        </td>
-                @*<td style="width:20px">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Details", "Details", new { id = item.pacienteID }, new { data_modal = "" })</li>
-                            <li>@Html.ActionLink("Edit", "Edit", new { id = item.pacienteID }, new { data_modal = "" })</li>
-                            <li class="divider"></li>
-                            <li>@Html.ActionLink("Delete", "Delete", new { id = item.pacienteID }, new { data_modal = "" })</li>
-
-                        </ul>
-                    </div>
-        </td>*@
-
-    </tr>
-}
-
+                </tr>
+            }
+        </tbody>
 </table>
     <div id="modalDetalles" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -99,7 +98,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- VISTA DE DETALLES DE ALUMNO-->
-                    @*Html.Partial("Details", vmAlumno)*@
+                    @Html.Partial("Details",nuevoPaciente);
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -109,41 +108,6 @@
     </div>
 </div>
 
-<div id="modalBorrar" class="modal fade" role="dialog">
-    <div class="modal-dialog">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Eliminar</h4>
-            </div>
-            <div class="modal-body">
-                @*Html.Partial("Delete", vmAlumno)*@
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="modalEditar" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modificar</h4>
-            </div>
-            <div class="modal-body">
-                @*@Html.Partial("Edit", nuevoAlumno)*@
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
 <script src="~/Scripts/modalform.js"></script>
+

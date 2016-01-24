@@ -35,6 +35,16 @@ namespace HospitalProyecto.Controllers
             }
             return View(paciente);
         }
+        // GET: Alumno/Details/5
+        //[Authorize(Roles = "Administrador, Capturista")]
+      [HttpGet]
+        public JsonResult AjaxDetails(int? id)
+        {
+            Paciente paciente = db.pacientes.Find(id);
+            //VMPaciente vmPaciente = new VMPaciente(paciente);
+
+            return Json(paciente, JsonRequestBehavior.AllowGet);
+        }
 
         // GET: /Paciente/Create
         public ActionResult Create()
