@@ -68,7 +68,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.direccion)
                 </td>
-                <td style="width:20px">
+                <td>
+                    <a id="enlaceDetalles" data-toggle="modal" data-target="#modalDetalles" nomatricula="@item.medicoID">Detalles</a> |
+                    <a id="enlaceBorrar" data-toggle="modal" data-target="#modalBorrar" nomatricula="@item.medicoID">Borrar</a> |
+                    <a id="enlaceEditar" data-toggle="modal" data-target="#modalEditar" nomatricula="@item.medicoID">Editar</a>
+                </td>
+                @*<td style="width:20px">
                     <div class="btn-group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
                             <span class="caret"></span>
@@ -81,10 +86,67 @@
 
                         </ul>
                     </div>
-                </td>
+                </td>*@
             </tr>
         }
-
     </table>
+
+    <div id="modalDetalles" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Detalles</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- VISTA DE DETALLES DE ALUMNO-->
+                    @*Html.Partial("Details", vmAlumno)*@
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalBorrar" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Eliminar</h4>
+                </div>
+                <div class="modal-body">
+                    @*Html.Partial("Delete", vmAlumno)*@
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalEditar" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modificar</h4>
+                </div>
+                <div class="modal-body">
+                    @*@Html.Partial("Edit", nuevoAlumno)*@
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="~/Scripts/modalform.js"></script>

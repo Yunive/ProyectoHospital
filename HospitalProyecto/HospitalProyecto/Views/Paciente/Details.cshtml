@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Details</h2>
@@ -11,11 +11,12 @@
     <h4>Paciente</h4>
 	<hr />
     <dl class="dl-horizontal">
+        @Html.HiddenFor(model => model.pacienteID)
         <dt>
             @Html.DisplayNameFor(model => model.nombre)
         </dt>
 
-        <dd>
+        <dd id="@Html.DisplayNameFor(model => model.nombre)">
             @Html.DisplayFor(model => model.nombre)
         </dd>
 
@@ -23,15 +24,15 @@
             @Html.DisplayNameFor(model => model.apellidoP)
         </dt>
 
-        <dd>
+        <dd id="@Html.DisplayNameFor(model => model.apellidoP)">
             @Html.DisplayFor(model => model.apellidoP)
         </dd>
 
-        <dt>
+        <dt >
             @Html.DisplayNameFor(model => model.apellidoM)
         </dt>
 
-        <dd>
+        <dd id="@Html.DisplayNameFor(model => model.apellidoM)">
             @Html.DisplayFor(model => model.apellidoM)
         </dd>
 
@@ -39,7 +40,7 @@
             @Html.DisplayNameFor(model => model.telefono)
         </dt>
 
-        <dd>
+        <dd id="@Html.DisplayNameFor(model => model.telefono)">
             @Html.DisplayFor(model => model.telefono)
         </dd>
 
@@ -47,7 +48,7 @@
             @Html.DisplayNameFor(model => model.direccion)
         </dt>
 
-        <dd>
+        <dd id="@Html.DisplayNameFor(model => model.direccion)">
             @Html.DisplayFor(model => model.direccion)
         </dd>
 
