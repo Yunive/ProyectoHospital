@@ -20,11 +20,13 @@
                     "<td>" + alumno.nombre + "</td>" + //nombre
                     "<td>" + alumno.apellidoP + "</td>" + //apellidoP
                     "<td>" + alumno.apellidoM + "</td>" + //apellidoM
-                    "<td>" + alumno.fechaNac + "</td>" + //fechaNac
+                    "<td>" + alumno.telefono + "</td>" + //apellidoP
+                    "<td>" + alumno.direccion + "</td>" + //apellidoM
+                    //"<td>" + alumno.fechaNac + "</td>" + //fechaNac
                     "<td>"+
-                    "<a id='enlaceDetalles' data-toggle='modal' data-target='#modalDetalles' nomatricula='"+alumno.noMatricula+"'>Detalles</a> |"+
-                    "<a id='enlaceBorrar' data-toggle='modal' data-target='#modalBorrar' nomatricula='"+alumno.noMatricula+"'>Borrar</a> |"+
-                    "<a id='enlaceEditar' data-toggle='modal' data-target='#modalEditar' nomatricula='"+alumno.noMatricula+"'>Editar</a> |"+
+                    "<a id='enlaceDetalles' data-toggle='modal' data-target='#modalDetalles' nomatricula='"+alumno.PacienteID+"'>Details</a> |"+
+                    "<a id='enlaceBorrar' data-toggle='modal' data-target='#modalBorrar' nomatricula='" +alumno.PacienteID+ "'>Delete</a> |" +
+                    "<a id='enlaceEditar' data-toggle='modal' data-target='#modalEditar' nomatricula='" +alumno.PacienteID+ "'>Edit</a> |" +
                     "</td>" +
                     "</tr>")
             }

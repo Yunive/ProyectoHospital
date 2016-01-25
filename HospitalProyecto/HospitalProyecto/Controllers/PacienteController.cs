@@ -8,12 +8,28 @@ using System.Web;
 using System.Web.Mvc;
 using HospitalProyecto.Models;
 using HospitalProyecto.DAL;
+using System.Web.Script.Serialization;
 
 namespace HospitalProyecto.Controllers
 {
     public class PacienteController : Controller
     {
         private Contexto db = new Contexto();
+
+
+        public ActionResult PruebaAjax()
+        {
+            return View();
+        }
+
+        public JsonResult EntregarDatos()
+        {
+            //var listaJson = from alumno in 
+            //return Json(db.carreras.ToList(),JsonRequestBehavior.AllowGet);
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            String dato = "Esto viene del server";
+            return Json(jss.Serialize(dato), JsonRequestBehavior.AllowGet);
+        }
 
         // GET: /Paciente/
         public ActionResult Index()
