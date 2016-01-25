@@ -32,7 +32,7 @@
     
 
     @*<h2>Pacientes</h2>*@
-    <button id="botonPrueba">Boton Nuevo</button>
+    @*<button id="botonPrueba">Boton Nuevo</button>*@
     @*<p>
     @Html.ActionLink("Create New", "Create")
     </p>*@
@@ -78,9 +78,9 @@
                         @Html.DisplayFor(modelItem => item.direccion)
                     </td>
                     <td>
-                        <a id="enlaceDetalles" data-toggle="modal" data-target="#modalDetalles" pacienteID="@item.pacienteID">Detalles</a> |
-                        <a id="enlaceBorrar" data-toggle="modal" data-target="#modalBorrar" pacienteID="@item.pacienteID">Borrar</a> |
-                        <a id="enlaceEditar" data-toggle="modal" data-target="#modalEditar" pacienteID="@item.pacienteID">Editar</a>
+                        <a id="enlaceDetalles" data-toggle="modal" data-target="#modalDetalles" pacienteID="@item.pacienteID">Details</a> |
+                        <a id="enlaceBorrar" data-toggle="modal" data-target="#modalBorrar" pacienteID="@item.pacienteID">Delete</a> |
+                        <a id="enlaceEditar" data-toggle="modal" data-target="#modalEditar" pacienteID="@item.pacienteID">Edit</a>
                     </td>
 
                 </tr>
@@ -107,7 +107,43 @@
         </div>
     </div>
 </div>
+<div id="modalBorrar" class="modal fade" role="dialog">
+    <div class="modal-dialog">
 
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Eliminar</h4>
+            </div>
+            <div class="modal-body">
+                @*Html.Partial("Delete", vmAlumno)*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
+<div id="modalEditar" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modificar</h4>
+            </div>
+            <div class="modal-body">
+                @*@Html.Partial("Edit", nuevoAlumno)*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 <script src="~/Scripts/modalform.js"></script>
 
