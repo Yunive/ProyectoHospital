@@ -41,29 +41,31 @@
     $("a#enlaceEditar").click(function () {
         //Se obtiene el numero de matricula a consultar
         var enlaceClickeado = $(this);
-        var noMat = enlaceClickeado.attr("nomatricula");
+        var noMat = enlaceClickeado.attr("pacienteID");
 
         //Definir la transaccione AJAX al server
         $.ajax({
-            url: "/Alumno/AjaxEdit", //Accion a ejecutar en el server
+            url: "/Paciente/AjaxEdit", //Accion a ejecutar en el server
             contentType: "application/html; charset=utf-8",
             type: "GET",
             dataType: "html",
-            data: { noMatricula: noMat } //Dato enviado al server
+            data: { pacienteID: noMat } //Dato enviado al server
         }).success(function (result) { //result = {mensaje, status}
             //Se obtiene la respuesta del server en forma de objeto
             var alumno = JSON.parse(result);
 
             //Con la información recibida, se rellena el formulario
-            $("#modalEditar #noMatricula").val(alumno.noMatricula);
+            $("#modalEditar #pacienteID").val(alumno.pacienteID);
             $("#modalEditar #nombre").val(alumno.nombre);
             $("#modalEditar #apellidoP").val(alumno.apellidoP);
             $("#modalEditar #apellidoM").val(alumno.apellidoM);
-            fechaRecibida = new Date(alumno.fechaNac);
+            $("#modalEditar #telefono").val(alumno.telefono);
+            $("#modalEditar #direccion").val(alumno.direccion);
+            //fechaRecibida = new Date(alumno.fechaNac);
             //$("#modalEditar #fechaNac").val(fechaRecibida);
             //document.getElementById("fechaNac").valueAsDate = fechaRecibida;
-            $("#modalEditar #fechaNac")[0].valueAsDate = fechaRecibida;
-            $("#modalEditar #grupoID").val(alumno.grupoID);
+            //$("#modalEditar #fechaNac")[0].valueAsDate = fechaRecibida;
+            //$("#modalEditar #grupoID").val(alumno.grupoID);
 
         }).error(function (xhr, status) {
             /*Notificar al usuario de un error de comunicacion
@@ -77,16 +79,16 @@
     /*Confirmar edicion de cambios en registro de alumnos*/
     $("#btnEditar").click(function () {
         alumnoModificado = {
-            noMatricula: $("#modalEditar #noMatricula").val(),
+            noMatricula: $("#modalEditar #pacienteID").val(),
             nombre: $("#modalEditar #nombre").val(),
             apellidoP: $("#modalEditar #apellidoP").val(),
             apellidoM: $("#modalEditar #apellidoM").val(),
-            fechaNac: $("#modalEditar #fechaNac").val(),
-            grupoID: $("#modalEditar #grupoID").val(),
+            telefono: $("#modalEditar #telefono").val(),
+            direccion: $("#modalEditar #direccion").val(),
         };
 
         $.ajax({
-            url: '/Alumno/AjaxEdit',
+            url: '/Paciente/AjaxEdit',
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             data: JSON.stringify(alumnoModificado),

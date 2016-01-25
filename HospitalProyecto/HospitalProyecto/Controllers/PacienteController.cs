@@ -150,5 +150,37 @@ namespace HospitalProyecto.Controllers
             }
             base.Dispose(disposing);
         }
+        [HttpGet]
+        public JsonResult AjaxEdit(int pacienteID = 0)
+        {
+            /*Un objeto instanciado del modelo de datos*/
+            Paciente alumno = db.pacientes.Find(pacienteID);
+
+            /*Necesito una instancia del modelo de vista*/
+            VMPaciente vmAlumno = new VMPaciente(alumno);
+
+            return Json(vmAlumno, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult AjaxEdit(Paciente alumno)
+        {
+            String mensaje = String.Empty;
+
+            try
+            {
+                db.Entry(alumno).State = EntityState.Modified;
+                int c = db.SaveChanges();
+                mensaje = "Se ha editado los datos del alumno satisfactoriamente";
+            }
+            catch (Exception exc)
+            {
+                mensaje = "Hubo un error en el servidor: " + exc.Message;
+            }
+
+
+            return Json(new { mensaje = mensaje }, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
