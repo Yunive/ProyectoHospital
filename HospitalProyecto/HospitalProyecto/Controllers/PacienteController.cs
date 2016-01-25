@@ -41,7 +41,7 @@ namespace HospitalProyecto.Controllers
         public JsonResult AjaxDetails(int? id)
         {
             Paciente paciente = db.pacientes.Find(id);
-            //VMPaciente vmPaciente = new VMPaciente(paciente);
+            VMPaciente vmPaciente = new VMPaciente(paciente);
 
             return Json(paciente, JsonRequestBehavior.AllowGet);
         }
