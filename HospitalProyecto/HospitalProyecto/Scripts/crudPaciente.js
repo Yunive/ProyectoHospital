@@ -7,8 +7,10 @@
             contentType: "application/html; charset=utf-8",
             type: "GET",
             dataType:"html",
-            data: { id: id.pacienteID}
+            data: { id: id}
         }).success(function (result) {
+            $("input#nombre").val(result.nombre)
+            
             alert("todo bien");
         }).error(function (xhr, status) {
               alert("hubo un error");

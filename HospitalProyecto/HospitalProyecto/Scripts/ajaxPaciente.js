@@ -11,22 +11,22 @@
         }).success(function (result) {
             var tablaPaciente = $("#tablaPaciente tbody");
             tablaPaciente.html("");
-            var conjutoAlumnos = JSON.parse(result);
+            var conjutoPacientes = JSON.parse(result);
 
-            for (var indice in conjutoAlumnos) {
-                var alumno = conjutoAlumnos[indice];
+            for (var indice in conjutoPacientes) {
+                var paciente = conjutoPacientes[indice];
                 tablaAlumnos.append("<tr>"+
-                    "<td>" + alumno.grupo + "</td>" + //Nombre grupo
-                    "<td>" + alumno.nombre + "</td>" + //nombre
-                    "<td>" + alumno.apellidoP + "</td>" + //apellidoP
-                    "<td>" + alumno.apellidoM + "</td>" + //apellidoM
-                    "<td>" + alumno.telefono + "</td>" + //apellidoP
-                    "<td>" + alumno.direccion + "</td>" + //apellidoM
+                    "<td>" + paciente.grupo + "</td>" + //Nombre grupo
+                    "<td>" + paciente.nombre + "</td>" + //nombre
+                    "<td>" + paciente.apellidoP + "</td>" + //apellidoP
+                    "<td>" + paciente.apellidoM + "</td>" + //apellidoM
+                    "<td>" + paciente.telefono + "</td>" + //apellidoP
+                    "<td>" + paciente.direccion + "</td>" + //apellidoM
                     //"<td>" + alumno.fechaNac + "</td>" + //fechaNac
                     "<td>"+
-                    "<a id='enlaceDetalles' data-toggle='modal' data-target='#modalDetalles' nomatricula='"+alumno.PacienteID+"'>Details</a> |"+
-                    "<a id='enlaceBorrar' data-toggle='modal' data-target='#modalBorrar' nomatricula='" +alumno.PacienteID+ "'>Delete</a> |" +
-                    "<a id='enlaceEditar' data-toggle='modal' data-target='#modalEditar' nomatricula='" +alumno.PacienteID+ "'>Edit</a> |" +
+                    "<a id='enlaceDetalles' data-toggle='modal' data-target='#modalDetalles' nomatricula='" + paciente.PacienteID + "'>Details</a> |" +
+                    "<a id='enlaceBorrar' data-toggle='modal' data-target='#modalBorrar' nomatricula='" + paciente.PacienteID + "'>Delete</a> |" +
+                    "<a id='enlaceEditar' data-toggle='modal' data-target='#modalEditar' nomatricula='" + paciente.PacienteID + "'>Edit</a> |" +
                     "</td>" +
                     "</tr>")
             }

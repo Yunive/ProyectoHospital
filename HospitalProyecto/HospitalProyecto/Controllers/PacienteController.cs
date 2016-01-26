@@ -154,22 +154,22 @@ namespace HospitalProyecto.Controllers
         public JsonResult AjaxEdit(int pacienteID = 0)
         {
             /*Un objeto instanciado del modelo de datos*/
-            Paciente alumno = db.pacientes.Find(pacienteID);
+            Paciente paciente = db.pacientes.Find(pacienteID);
 
             /*Necesito una instancia del modelo de vista*/
-            VMPaciente vmAlumno = new VMPaciente(alumno);
+            VMPaciente vmPaciente = new VMPaciente(paciente);
 
-            return Json(vmAlumno, JsonRequestBehavior.AllowGet);
+            return Json(vmPaciente, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public JsonResult AjaxEdit(Paciente alumno)
+        public JsonResult AjaxEdit(Paciente paciente)
         {
             String mensaje = String.Empty;
 
             try
             {
-                db.Entry(alumno).State = EntityState.Modified;
+                db.Entry(paciente).State = EntityState.Modified;
                 int c = db.SaveChanges();
                 mensaje = "Se ha editado los datos del alumno satisfactoriamente";
             }
