@@ -1,4 +1,5 @@
 ﻿$().ready(function () {
+    var intPacienteID;
     //Se asocian las llamadas a eventos ocurridos en la vista
     $("a#enlaceDetalles").click(function () {
         var id = $(this).attr("pacienteID");
@@ -25,7 +26,7 @@
 
 
     $("#DeletePaciente").click(function () {
-        var id = $(this).attr("pacienteID");
+        var id = intPacienteID;
         $.ajax({
             url: "/Paciente/Delete",
             contentType: "application/html; charset=utf-8",
@@ -42,19 +43,19 @@
     })
 
     $("a#enlaceBorrar").click(function () {
-        var id = $("a#enlaceDetalles").attr("pacienteID");
+        intPacienteID = $("a#enlaceDetalles").attr("pacienteID");
         $.ajax({
             url: "/Paciente/Delete",
             contentType: "application/html; charset=utf-8",
             type: "GET",
             dataType: "html",
-            data: { id: id }
+            data: { id: intPacienteID }
         }).success(function (result) {
-            alert("Se borro el usuario")
+            //alert("Se borro el usuario")
         })
 
         .error(function (result) {
-            alert("No se borro el usuario")
+            //alert("No se borro el usuario")
         })
     })
 
