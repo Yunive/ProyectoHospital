@@ -16,20 +16,21 @@
             for (var indice in conjutoPacientes) {
                 var paciente = conjutoPacientes[indice];
                 tablaAlumnos.append("<tr>"+
-                    "<td>" + paciente.grupo + "</td>" + //Nombre grupo
-                    "<td>" + paciente.nombre + "</td>" + //nombre
-                    "<td>" + paciente.apellidoP + "</td>" + //apellidoP
-                    "<td>" + paciente.apellidoM + "</td>" + //apellidoM
-                    "<td>" + paciente.telefono + "</td>" + //apellidoP
-                    "<td>" + paciente.direccion + "</td>" + //apellidoM
+                    //"<td>" + paciente.grupo + "</td>" + //Nombre grupo
+                    //"<td>" + paciente.nombre + "</td>" + //nombre
+                    //"<td>" + paciente.apellidoP + "</td>" + //apellidoP
+                    //"<td>" + paciente.apellidoM + "</td>" + //apellidoM
+                    //"<td>" + paciente.telefono + "</td>" + //apellidoP
+                    //"<td>" + paciente.direccion + "</td>" + //apellidoM
                     //"<td>" + alumno.fechaNac + "</td>" + //fechaNac
-                    "<td>"+
-                    "<a id='enlaceDetalles' data-toggle='modal' data-target='#modalDetalles' nomatricula='" + paciente.PacienteID + "'>Details</a> |" +
-                    "<a id='enlaceBorrar' data-toggle='modal' data-target='#modalBorrar' nomatricula='" + paciente.PacienteID + "'>Delete</a> |" +
-                    "<a id='enlaceEditar' data-toggle='modal' data-target='#modalEditar' nomatricula='" + paciente.PacienteID + "'>Edit</a> |" +
-                    "</td>" +
+                    //"<td>"+
+                    //"<a id='enlaceDetalles' data-toggle='modal' data-target='#modalDetalles' nomatricula='" + paciente.PacienteID + "'>Details</a> |" +
+                    //"<a id='enlaceBorrar' data-toggle='modal' data-target='#modalBorrar' nomatricula='" + paciente.PacienteID + "'>Delete</a> |" +
+                    //"<a id='enlaceEditar' data-toggle='modal' data-target='#modalEditar' nomatricula='" + paciente.PacienteID + "'>Edit</a> |" +
+                    //"</td>" +
                     "</tr>")
-            }
+                    
+                }
 
         }).error(function (xhr, status) {
 

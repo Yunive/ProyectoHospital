@@ -59,7 +59,7 @@ namespace HospitalProyecto.Controllers
             Paciente paciente = db.pacientes.Find(id);
             VMPaciente vmPaciente = new VMPaciente(paciente);
 
-            return Json(paciente, JsonRequestBehavior.AllowGet);
+            return Json(vmPaciente, JsonRequestBehavior.AllowGet);
         }
 
         // GET: /Paciente/Create
@@ -117,29 +117,29 @@ namespace HospitalProyecto.Controllers
         }
 
         // GET: /Paciente/Delete/5
-        public ActionResult Delete(int? id)
+        public JsonResult Delete(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                // return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Paciente paciente = db.pacientes.Find(id);
             if (paciente == null)
             {
-                return HttpNotFound();
+                // return HttpNotFound();
             }
-            return View(paciente);
+            return Json(paciente, JsonRequestBehavior.AllowGet);
         }
 
         // POST: /Paciente/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public JsonResult DeleteConfirmed(int id)
         {
             Paciente paciente = db.pacientes.Find(id);
             db.pacientes.Remove(paciente);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return Json(paciente, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

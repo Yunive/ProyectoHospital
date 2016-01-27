@@ -117,7 +117,7 @@
                 <h4 class="modal-title">Eliminar</h4>
             </div>
             <div class="modal-body">
-                @*Html.Partial("Delete", vmAlumno)*@
+                @Html.Partial("Delete", nuevoPaciente)
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -139,7 +139,8 @@
                 @Html.Partial("Edit", nuevoPaciente)
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                
+                <button id="botonBorrar" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

@@ -6,28 +6,56 @@
             url: "/Paciente/AjaxDetails",
             contentType: "application/html; charset=utf-8",
             type: "GET",
-            dataType:"html",
-            data: { id: id}
+            dataType: "html",
+            data: { id: id }
         }).success(function (result) {
-            $("input#nombre").val(result.nombre)
-            
-            alert("todo bien");
+
+            var paciente = JSON.parse(result)
+            $("#DetallesPaciente").html("");
+            $("#DetallesPaciente").append("<b>Nombre: </b>" + "<br>" + paciente.nombre + "<br>");
+            $("#DetallesPaciente").append("<b>Apellido Paterno: </b>" + "<br>" + paciente.apellidoP + "<br>");
+            $("#DetallesPaciente").append("<b>Apellido Materno: </b>" + "<br>" + paciente.apellidoM + "<br>");
+            $("#DetallesPaciente").append("<b>Telefono: </b>" + "<br>" + paciente.telefono + "<br>");
+            $("#DetallesPaciente").append("<b>Direccion: </b>" + "<br>" + paciente.direccion + "<br>");
         }).error(function (xhr, status) {
-              alert("hubo un error");
+            alert("hubo un error");
         })
     })
-    
 
-    //Se definen las funciones para mostrar resultados de transacciones
-    function paciente_llenarFormaDetalles(result) {
-        $("input#pacienteID").val(result.pacienteID);
-    }
 
-    function notificarError(status) {
-        alert(status)
-    }
-})
-$("#botonPrueba").click(function () {
-    $("#botonPrueba").html("Si entro al buton");
+
+    $("#DeletePaciente").click(function () {
+        var id = $(this).attr("pacienteID");
+        $.ajax({
+            url: "/Paciente/Delete",
+            contentType: "application/html; charset=utf-8",
+            type: "POST",
+            dataType: "html",
+            data: { id: id }
+        }).success(function (result) {
+            alert("Se borro el usuario")
+        })
+
+        .error(function (result) {
+            alert("No se borro el usuario")
+        })
+    })
+
+    $("a#enlaceBorrar").click(function () {
+        var id = $("a#enlaceDetalles").attr("pacienteID");
+        $.ajax({
+            url: "/Paciente/Delete",
+            contentType: "application/html; charset=utf-8",
+            type: "GET",
+            dataType: "html",
+            data: { id: id }
+        }).success(function (result) {
+            alert("Se borro el usuario")
+        })
+
+        .error(function (result) {
+            alert("No se borro el usuario")
+        })
+    })
 
 })
