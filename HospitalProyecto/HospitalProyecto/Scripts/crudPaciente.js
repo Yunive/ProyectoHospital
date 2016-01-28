@@ -112,7 +112,7 @@
 })
 /**************************************************************************************************************************************************************************************************************/
 $("#btnCrearPacientes").click(function () {
-    nuevoPaciente = {
+    paciente = {
         //pacienteID: $("#modalPaciente #pacienteID").val(),
         nombre: $("#modalPaciente #nombre").val(),
         apellidoP: $("#modalPaciente #apellidoP").val(),
@@ -124,7 +124,7 @@ $("#btnCrearPacientes").click(function () {
         url: '/Paciente/CreateAjax',
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
-        data: JSON.stringify(nuevoPaciente),
+        data: JSON.stringify(paciente),
         type: 'post',
     }).success(function (result) {
         rellenarIndexPaciente();
