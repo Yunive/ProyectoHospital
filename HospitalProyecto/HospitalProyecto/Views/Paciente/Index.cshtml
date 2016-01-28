@@ -4,13 +4,13 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
     HospitalProyecto.Models.Paciente nuevoPaciente = new HospitalProyecto.Models.Paciente();
-    HospitalProyecto.Models.VMPaciente vmAlumno = new HospitalProyecto.Models.VMPaciente(nuevoPaciente);
+    HospitalProyecto.Models.VMPaciente vmPaciente = new HospitalProyecto.Models.VMPaciente(nuevoPaciente);
 
 }
                       <h2>Index</h2>
 
                       <!-- Trigger the modal with a button -->
-                      <a data-toggle="modal" data-target="#modalAlta">Nuevo Alumno</a>
+                      @*<a data-toggle="modal" data-target="#modalAlta">Nuevo Alumno</a>*@
 
                       @using (Html.BeginForm(null, null, FormMethod.Get))
                       {
@@ -98,7 +98,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- VISTA DE DETALLES DE ALUMNO-->
-                    @Html.Partial("Details", vmAlumno);
+                    @Html.Partial("Details", vmPaciente);
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -117,7 +117,7 @@
                 <h4 class="modal-title">Eliminar</h4>
             </div>
             <div class="modal-body">
-                @Html.Partial("Delete", nuevoPaciente);
+                @Html.Partial("Delete", nuevoPaciente)
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -136,14 +136,15 @@
                 <h4 class="modal-title">Modificar</h4>
             </div>
             <div class="modal-body">
-                @*@Html.Partial("Edit", nuevoAlumno)*@
+                @Html.Partial("Edit", nuevoPaciente)
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                
+                <button id="botonBorrar" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
-</div>
+
 <script src="~/Scripts/modalform.js"></script>
 

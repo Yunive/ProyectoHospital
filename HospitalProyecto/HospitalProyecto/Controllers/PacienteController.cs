@@ -53,7 +53,7 @@ namespace HospitalProyecto.Controllers
         }
         // GET: Alumno/Details/5
         //[Authorize(Roles = "Administrador, Capturista")]
-      [HttpGet]
+      [HttpPost]
         public JsonResult AjaxDetails(int? id)
         {
             Paciente paciente = db.pacientes.Find(id);
@@ -117,26 +117,29 @@ namespace HospitalProyecto.Controllers
         }
 
         // GET: /Paciente/Delete/5
-        public JsonResult Delete(int? id)
+        [HttpGet]
+        public JsonResult DeleteConfirmed(int idpaciente = 0)
         {
-            if (id == null)
+            String mensaje = "";
+            try
             {
-               // return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                Paciente paciente = db.pacientes.Find(idpaciente);
+                db.pacientes.Remove(paciente);
+                db.SaveChanges();
+                mensaje = " Todo salio Muy Bien";
             }
-            Paciente paciente = db.pacientes.Find(id);
-            if (paciente == null)
-            {
-               // return HttpNotFound();
+            catch {
+                mensaje = "Hubo un error";
             }
-            return Json(paciente, JsonRequestBehavior.AllowGet);
+            return Json(new { mensaje = mensaje }, JsonRequestBehavior.AllowGet);
         }
 
         // POST: /Paciente/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public JsonResult DeleteConfirmed(int id)
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public JsonResult Delete(int idpaciente=0)
         {
-            Paciente paciente = db.pacientes.Find(id);
+            Paciente paciente = db.pacientes.Find(idpaciente);
             db.pacientes.Remove(paciente);
             db.SaveChanges();
             return Json(paciente, JsonRequestBehavior.AllowGet);
@@ -154,22 +157,22 @@ namespace HospitalProyecto.Controllers
         public JsonResult AjaxEdit(int pacienteID = 0)
         {
             /*Un objeto instanciado del modelo de datos*/
-            Paciente alumno = db.pacientes.Find(pacienteID);
+            Paciente paciente = db.pacientes.Find(pacienteID);
 
             /*Necesito una instancia del modelo de vista*/
-            //VMPaciente vmAlumno = new VMPaciente(alumno);
+            VMPaciente vmPaciente = new VMPaciente(paciente);
 
-            return Json(alumno, JsonRequestBehavior.AllowGet);
+            return Json(vmPaciente, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public JsonResult AjaxEdit(Paciente alumno)
+        public JsonResult AjaxEdit(Paciente paciente)
         {
             String mensaje = String.Empty;
 
             try
             {
-                db.Entry(alumno).State = EntityState.Modified;
+                db.Entry(paciente).State = EntityState.Modified;
                 int c = db.SaveChanges();
                 mensaje = "Se ha editado los datos del alumno satisfactoriamente";
             }

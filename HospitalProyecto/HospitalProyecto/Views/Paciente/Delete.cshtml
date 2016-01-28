@@ -12,11 +12,13 @@
     <h4>Paciente</h4>
 
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input id="DeletePaciente" type="submit" value="Delete" class="btn btn-default" /> |
+            @*<input id="DeletePaciente" type="submit" value="Delete" class="btn btn-default" /> |*@
+            <button id="DeletePaciente" pacienteID="@Model.pacienteID">Borrar</button>
             @Html.ActionLink("Back to List", "Index")
         </div>
     }
