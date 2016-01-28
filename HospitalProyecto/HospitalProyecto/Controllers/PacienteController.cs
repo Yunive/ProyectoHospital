@@ -37,6 +37,51 @@ namespace HospitalProyecto.Controllers
             return View(db.pacientes.ToList());
         }
 
+        public JsonResult AjaxIndex(String nada)
+        {
+            //var alumnos = db.alumnos.ToList();
+
+            var varpacientes = from Paciente in db.pacientes
+                         
+                         select new
+                         {
+                             libroId = Paciente.pacienteID,
+                             nombre = Paciente.nombre,
+                             isbn = Paciente.apellidoP,
+                             autor = Paciente.apellidoM,
+                             editorial = Paciente.telefono,
+                             año = Paciente.direccion
+                         };
+
+            return Json(varpacientes, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult CreateAjax(Paciente paciente)
+        {
+
+            String mensaje = String.Empty;
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    db.pacientes.Add(paciente);
+                    db.SaveChanges();
+
+
+
+                    mensaje = "Registro guardado";
+                }
+            }
+            catch (Exception exc)
+            {
+                mensaje = "maldito servido FUCK YOU!: " + exc.Message;
+            }
+            return Json(new { mensaje = mensaje }, JsonRequestBehavior.AllowGet);
+        }
+
+        
         // GET: /Paciente/Details/5
         public ActionResult Details(int? id)
         {
@@ -53,7 +98,7 @@ namespace HospitalProyecto.Controllers
         }
         // GET: Alumno/Details/5
         //[Authorize(Roles = "Administrador, Capturista")]
-      [HttpPost]
+      [HttpGet]
         public JsonResult AjaxDetails(int? id)
         {
             Paciente paciente = db.pacientes.Find(id);
@@ -128,7 +173,8 @@ namespace HospitalProyecto.Controllers
                 db.SaveChanges();
                 mensaje = " Todo salio Muy Bien";
             }
-            catch {
+            catch
+            {
                 mensaje = "Hubo un error";
             }
             return Json(new { mensaje = mensaje }, JsonRequestBehavior.AllowGet);
@@ -137,7 +183,7 @@ namespace HospitalProyecto.Controllers
         // POST: /Paciente/Delete/5
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public JsonResult Delete(int idpaciente=0)
+        public JsonResult Delete(int idpaciente = 0)
         {
             Paciente paciente = db.pacientes.Find(idpaciente);
             db.pacientes.Remove(paciente);
