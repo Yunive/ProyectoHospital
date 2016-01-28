@@ -37,7 +37,7 @@ namespace HospitalProyecto.Controllers
             return View(db.pacientes.ToList());
         }
 
-        public JsonResult AjaxIndex(int nada)
+        public JsonResult AjaxIndex(String nada)
         {
             //var alumnos = db.alumnos.ToList();
 
@@ -56,7 +56,32 @@ namespace HospitalProyecto.Controllers
             return Json(varpacientes, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public JsonResult CreateAjax(Paciente paciente)
+        {
 
+            String mensaje = String.Empty;
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    db.pacientes.Add(paciente);
+                    db.SaveChanges();
+
+
+
+                    mensaje = "Registro guardado";
+                }
+            }
+            catch (Exception exc)
+            {
+                mensaje = "maldito servido FUCK YOU!: " + exc.Message;
+            }
+            return Json(new { mensaje = mensaje }, JsonRequestBehavior.AllowGet);
+        }
+
+        
         // GET: /Paciente/Details/5
         public ActionResult Details(int? id)
         {

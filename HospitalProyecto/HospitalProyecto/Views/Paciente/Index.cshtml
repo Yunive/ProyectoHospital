@@ -9,14 +9,7 @@
 }
                       <h2>Index</h2>
 
-                      <!-- Trigger the modal with a button -->
-                      @*<a data-toggle="modal" data-target="#modalAlta">Nuevo Alumno</a>*@
-
-                      @using (Html.BeginForm(null, null, FormMethod.Get))
-                      {
-                          <input type="text" name="strBuscado" value="" placeholder="Buscar Alumno" />
-                          <button>Buscar</button>
-                      }
+                   
  @*modal placeholder
 <div id='myModal' class='modal fade in'>
     <div class="modal-dialog">
@@ -27,15 +20,17 @@
 </div>*@
 
 <div class="panel panel-primary">
-    <div class="panel-heading"> Lista de pacientes</div>
+    <div class="panel-heading"> Lista de Pacientes</div>
 
-    
+    <div class="panel-body ">
+        <button id="btnCrearPaciente" class="btn btn-small btn-primary pull-right">Touch me</button>
+    </div>
 
     @*<h2>Pacientes</h2>*@
     @*<button id="botonPrueba">Boton Nuevo</button>*@
     @*<p>
-    @Html.ActionLink("Create New", "Create")
-    </p>*@
+        @Html.ActionLink("Create New", "Create")
+        </p>*@
     <table id="tablaPaciente" class="table">
         <thead>
             <tr>
@@ -84,15 +79,15 @@
                         @Html.DisplayFor(modelItem => item.direccion)
                     </td>
                     <td>
-                        <a id="enlaceDetalles" data-toggle="modal" data-target="#modalDetalles" pacienteID="@item.pacienteID">Details</a> |
-                        <a id="enlaceBorrar" data-toggle="modal" data-target="#modalBorrar" pacienteID="@item.pacienteID">Delete</a> |
-                        <a id="enlaceEditar" data-toggle="modal" data-target="#modalEditar" pacienteID="@item.pacienteID">Edit</a>
+                        <a id="enlaceDetalles" data-toggle="modal" data-target="#modalDetalles" pacienteid="@item.pacienteID">Details</a> |
+                        <a id="enlaceBorrar" data-toggle="modal" data-target="#modalBorrar" pacienteid="@item.pacienteID">Delete</a> |
+                        <a id="enlaceEditar" data-toggle="modal" data-target="#modalEditar" pacienteid="@item.pacienteID">Edit</a>
                     </td>
 
                 </tr>
             }
         </tbody>
-</table>
+    </table>
     <div id="modalDetalles" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
@@ -148,6 +143,28 @@
                 
                 <button id="botonBorrar" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
+        </div>
+    </div>
+</div>
+<div id="modalPaciente" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Registrando ando </h4>
+            </div>
+
+            <div class="modal-body">
+                @Html.Partial("Create", nuevoPaciente)
+              
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+            </div>
+
+
         </div>
     </div>
 </div>

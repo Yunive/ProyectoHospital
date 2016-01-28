@@ -53,13 +53,13 @@
         pacienteID = $(this).attr("pacienteID")
     })
     //elimina un registro
-    $("button#btnBorrar").click(function () {
+    $("#DeletePaciente").click(function () {
         $.ajax({
             url: '/Paciente/DeleteConfirmed',
             contentType: "application/json; charset=utf-8",
             dataType: 'json',
             data: { idpaciente: pacienteID }, //Dato enviado al server
-            type: 'get',
+            type: 'get'
         }).success(function (result) {
             rellenarIndexPaciente();
             alert("todo bien basilio te la rifas");
@@ -72,14 +72,14 @@
 
     })
     function rellenarIndexPaciente() {
-        var nadasss=7
+        var strbuscado = "nada";
         $.ajax({
             url: '/Paciente/AjaxIndex',
             contentType: "application/html; charset=utf-8",
             dataType: 'html',
-            data: {nada:3 }, //Dato enviado al server
+            data: { nada: strbuscado }, //Dato enviado al server
             type: 'GET',
-           
+
         }).success(function (result) {
             var tablaPaciente = $("#tablaPaciente tbody");//se crea una variable de tipo tbody de la tabla en la vista index
             tablaPaciente.html("");//se limpia la tabla
@@ -109,4 +109,29 @@
         })
 
     }
+})
+/**************************************************************************************************************************************************************************************************************/
+$("#btnCrearPaciente").click(function () {
+    nuevoPaciente = {
+        //pacienteID: $("#modalPaciente #pacienteID").val(),
+        nombre: $("#modalPaciente #nombre").val(),
+        apellidoP: $("#modalPaciente #apellidoP").val(),
+        apellidoM: $("#modalPaciente #apellidoM").val(),
+        telefono: $("#modalPaciente #telefono").val(),
+        direccion: $("#modalPaciente #direccion").val()
+    };
+    $.ajax({
+        url: '/Paciente/Create',
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        data: JSON.stringify(nuevoPaciente),
+        type: 'post',
+    }).success(function (result) {
+        rellenarIndexPaciente();
+    }).error(function (xhr, status) {
+        alert("No se encontro el servidor," +
+            " ´Problemas de conexion a internet seguro tienes megacable.");
+
+    })
+    $("#modalPaciente").modal("toggle");
 })
