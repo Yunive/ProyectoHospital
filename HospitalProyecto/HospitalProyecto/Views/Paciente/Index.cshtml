@@ -36,9 +36,12 @@
     @*<p>
     @Html.ActionLink("Create New", "Create")
     </p>*@
-    <table id="tablaAlumnos" class="table">
+    <table id="tablaPaciente" class="table">
         <thead>
             <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.pacienteID)
+                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.nombre)
                 </th>
@@ -62,6 +65,9 @@
             {
                 <tr>
                     @*@Html.RadioButton("seleccion", item.pacienteID)*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pacienteID)
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.nombre)
                     </td>

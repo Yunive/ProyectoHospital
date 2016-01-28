@@ -37,6 +37,26 @@ namespace HospitalProyecto.Controllers
             return View(db.pacientes.ToList());
         }
 
+        public JsonResult AjaxIndex(int nada)
+        {
+            //var alumnos = db.alumnos.ToList();
+
+            var varpacientes = from Paciente in db.pacientes
+                         
+                         select new
+                         {
+                             libroId = Paciente.pacienteID,
+                             nombre = Paciente.nombre,
+                             isbn = Paciente.apellidoP,
+                             autor = Paciente.apellidoM,
+                             editorial = Paciente.telefono,
+                             año = Paciente.direccion
+                         };
+
+            return Json(varpacientes, JsonRequestBehavior.AllowGet);
+        }
+
+
         // GET: /Paciente/Details/5
         public ActionResult Details(int? id)
         {
@@ -117,26 +137,30 @@ namespace HospitalProyecto.Controllers
         }
 
         // GET: /Paciente/Delete/5
-        public JsonResult Delete(int? id)
+        [HttpGet]
+        public JsonResult DeleteConfirmed(int idpaciente = 0)
         {
-            if (id == null)
+            String mensaje = "";
+            try
             {
-                // return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                Paciente paciente = db.pacientes.Find(idpaciente);
+                db.pacientes.Remove(paciente);
+                db.SaveChanges();
+                mensaje = " Todo salio Muy Bien";
             }
-            Paciente paciente = db.pacientes.Find(id);
-            if (paciente == null)
+            catch
             {
-                // return HttpNotFound();
+                mensaje = "Hubo un error";
             }
-            return Json(paciente, JsonRequestBehavior.AllowGet);
+            return Json(new { mensaje = mensaje }, JsonRequestBehavior.AllowGet);
         }
 
         // POST: /Paciente/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public JsonResult DeleteConfirmed(int id)
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public JsonResult Delete(int idpaciente = 0)
         {
-            Paciente paciente = db.pacientes.Find(id);
+            Paciente paciente = db.pacientes.Find(idpaciente);
             db.pacientes.Remove(paciente);
             db.SaveChanges();
             return Json(paciente, JsonRequestBehavior.AllowGet);
