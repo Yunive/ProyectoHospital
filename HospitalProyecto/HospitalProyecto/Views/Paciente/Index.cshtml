@@ -7,7 +7,6 @@
     HospitalProyecto.Models.VMPaciente vmPaciente = new HospitalProyecto.Models.VMPaciente(nuevoPaciente);
 
 }
-                      <h2>Index</h2>
 
                    
  @*modal placeholder
@@ -23,7 +22,8 @@
     <div class="panel-heading"> Lista de Pacientes</div>
 
     <div class="panel-body ">
-        <button id="btnCrearPaciente" class="btn btn-small btn-primary pull-right">Touch me</button>
+        @*<button id="#modalPaciente" class="btn btn-small btn-primary pull-right">Add</button>*@
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalPaciente" style="margin-top: 10px">Add</button>
     </div>
 
     @*<h2>Pacientes</h2>*@
@@ -79,6 +79,7 @@
                         @Html.DisplayFor(modelItem => item.direccion)
                     </td>
                     <td>
+
                         <a id="enlaceDetalles" data-toggle="modal" data-target="#modalDetalles" pacienteid="@item.pacienteID">Details</a> |
                         <a id="enlaceBorrar" data-toggle="modal" data-target="#modalBorrar" pacienteid="@item.pacienteID">Delete</a> |
                         <a id="enlaceEditar" data-toggle="modal" data-target="#modalEditar" pacienteid="@item.pacienteID">Edit</a>

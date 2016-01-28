@@ -45,12 +45,12 @@ namespace HospitalProyecto.Controllers
                          
                          select new
                          {
-                             libroId = Paciente.pacienteID,
+                             pacienteID = Paciente.pacienteID,
                              nombre = Paciente.nombre,
-                             isbn = Paciente.apellidoP,
-                             autor = Paciente.apellidoM,
-                             editorial = Paciente.telefono,
-                             año = Paciente.direccion
+                             apellidoP = Paciente.apellidoP,
+                             apellidoM = Paciente.apellidoM,
+                             telefono = Paciente.telefono,
+                             direccion = Paciente.direccion
                          };
 
             return Json(varpacientes, JsonRequestBehavior.AllowGet);

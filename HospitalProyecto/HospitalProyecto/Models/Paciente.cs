@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 
@@ -19,11 +20,15 @@ namespace HospitalProyecto.Models
     public class VMPaciente
     {
         public int pacienteID { get; set; }
+       [DisplayName("Nombre")]
         public String nombre { get; set; }
-
+        [DisplayName("Apellido Paterno")]
         public String apellidoP { get; set; }
+        [DisplayName("Apellido Materno")]
         public String apellidoM { get; set; }
+        [DisplayName("Telefono")]
         public String telefono { get; set; }
+        [DisplayName("Direccion")]
         public String direccion { get; set; }
 
 

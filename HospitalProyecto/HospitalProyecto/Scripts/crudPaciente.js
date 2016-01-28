@@ -111,7 +111,7 @@
     }
 })
 /**************************************************************************************************************************************************************************************************************/
-$("#btnCrearPaciente").click(function () {
+$("#btnCrearPacientes").click(function () {
     nuevoPaciente = {
         //pacienteID: $("#modalPaciente #pacienteID").val(),
         nombre: $("#modalPaciente #nombre").val(),
@@ -121,7 +121,7 @@ $("#btnCrearPaciente").click(function () {
         direccion: $("#modalPaciente #direccion").val()
     };
     $.ajax({
-        url: '/Paciente/Create',
+        url: '/Paciente/CreateAjax',
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         data: JSON.stringify(nuevoPaciente),
@@ -129,8 +129,8 @@ $("#btnCrearPaciente").click(function () {
     }).success(function (result) {
         rellenarIndexPaciente();
     }).error(function (xhr, status) {
-        alert("No se encontro el servidor," +
-            " ´Problemas de conexion a internet seguro tienes megacable.");
+        alert("MALDICION!!!!!!!!!!," +
+            " ´NO SIRVIO EL ROSARIO QUE ME AVENTE.");
 
     })
     $("#modalPaciente").modal("toggle");
